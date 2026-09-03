@@ -1,0 +1,232 @@
+:root {
+  --bg: #f7f7f7;
+  --text: #111;
+  --window: #ffffff;
+  --border: #444;
+  --title: #444;
+
+  --accent: #3fa37a;
+
+  --blob1: #e3f5ec;
+  --blob2: #d6f0ff;
+  --blob3: #eee2ff;
+}
+
+body.dark {
+  --bg: #121212;
+  --text: #eee;
+  --window: #1e1e1e;
+  --border: #666;
+  --title: #2a2a2a;
+  --accent: #6fd3aa;
+
+  --blob1: #1e3a2f;
+  --blob2: #1f2e3a;
+  --blob3: #2a1f3a;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* grid */
+.bg-grid {
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(0,0,0,0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,0,0,0.06) 1px, transparent 1px);
+  background-size: 32px 32px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+body.dark .bg-grid {
+  background-image:
+    linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px);
+}
+
+/* blobs */
+.bg-blobs {
+  position: fixed;
+  inset: 0;
+  filter: blur(60px);
+  pointer-events: none;
+}
+
+.bg-blobs span {
+  position: absolute;
+  width: 480px;
+  height: 480px;
+  border-radius: 50%;
+  opacity: 0.65;
+  animation: float 36s ease-in-out infinite;
+}
+
+.bg-blobs span:nth-child(1) {
+  background: var(--blob1);
+  top: -15%;
+  left: -15%;
+}
+
+.bg-blobs span:nth-child(2) {
+  background: var(--blob2);
+  bottom: -15%;
+  right: -15%;
+}
+
+.bg-blobs span:nth-child(3) {
+  background: var(--blob3);
+  top: 40%;
+  left: 55%;
+}
+
+@keyframes float {
+  0% { transform: translate(0,0); }
+  50% { transform: translate(140px,-90px); }
+  100% { transform: translate(0,0); }
+}
+
+/* controls */
+.controls {
+  position: fixed;
+  top: 1.2rem;
+  left: 1.2rem;
+  display: flex;
+  gap: 0.8rem;
+  z-index: 300;
+}
+
+.controls button {
+  background: none;
+  border: none;
+  font-size: 1.6rem;
+  cursor: pointer;
+}
+
+/* home board */
+.home-board {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  min-height: 440px;
+  background: var(--window);
+  border: 2px solid var(--border);
+  border-radius: 8px;
+  box-shadow: 10px 10px 0 rgba(0,0,0,0.15);
+  z-index: 10;
+}
+
+.title-bar {
+  background: var(--title);
+  color: white;
+  padding: 0.6rem 0.8rem;
+  font-size: 1.05rem;
+  cursor: grab;
+}
+
+/* content */
+.home-content {
+  padding: 3.5rem 3rem;
+  text-align: center;
+}
+
+.home-content h1 {
+  font-size: 3.4rem;
+  font-weight: 500;
+}
+
+.home-content .name {
+  color: var(--accent);
+  font-weight: 600;
+  display: inline-block;
+  animation: breathe 6s ease-in-out infinite;
+}
+
+@keyframes breathe {
+  0%,100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.015); opacity: 0.92; }
+}
+
+.home-content p {
+  margin-top: 0.8rem;
+  opacity: 0.75;
+}
+
+/* icons */
+.home-icons {
+  display: flex;
+  justify-content: center;
+  gap: 2.8rem;
+  margin-top: 3.2rem;
+}
+
+.icon {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 2.6rem;
+}
+
+.icon span {
+  display: block;
+  font-size: 0.95rem;
+}
+
+/* windows */
+.window {
+  position: fixed;
+  top: 22%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 460px;
+  background: var(--window);
+  border: 2px solid var(--border);
+  border-radius: 8px;
+  display: none;
+  box-shadow: 8px 8px 0 rgba(0,0,0,0.2);
+}
+
+.close {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+.window-content {
+  padding: 1.4rem 1.6rem;
+}
+
+/* faq */
+.faq-item {
+  width: 100%;
+  padding: 0.75rem;
+  margin-bottom: 0.6rem;
+  border: none;
+  background: rgba(0,0,0,0.04);
+  cursor: pointer;
+}
+
+body.dark .faq-item {
+  background: rgba(255,255,255,0.08);
+}
+
+.faq-answer {
+  display: none;
+  padding: 0.7rem;
+  opacity: 0.8;
+}
